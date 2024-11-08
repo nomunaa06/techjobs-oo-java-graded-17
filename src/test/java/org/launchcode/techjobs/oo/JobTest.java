@@ -42,4 +42,49 @@ public class JobTest {
         assertNotEquals(job5.getId(), job4.getId());
     }
 
+    @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+        Job job6 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String newLine = System.lineSeparator();
+        String expected = String.format(
+                        newLine +
+                        "ID: " + job6.getId() + newLine +
+                        "Name: " + job6.getName() + newLine +
+                        "Employer: "+ job6.getEmployer() + newLine +
+                        "Location: " + job6.getLocation() + newLine +
+                        "Position Type: " + job6.getPositionType() + newLine +
+                        "Core Competency: " + job6.getCoreCompetency() + newLine
+        );
+        assertEquals(job6.toString(),expected);
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField(){
+        Job job7 = new Job("", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String newLine = System.lineSeparator();
+        String expected = String.format(
+                        newLine +
+                        "ID: " + job7.getId() + newLine +
+                        "Name: Data not available" + newLine +
+                        "Employer: "+ job7.getEmployer() + newLine +
+                        "Location: Data not available" + newLine +
+                        "Position Type: " + job7.getPositionType() + newLine +
+                        "Core Competency: " + job7.getCoreCompetency() + newLine
+        );
+        assertEquals(job7.toString(),expected);
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData(){
+        Job job8 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String output = job8.toString();
+        assertTrue(output.contains("ID: 1"));
+        assertTrue(output.contains("Name: Product tester"));
+        assertTrue(output.contains("Employer: ACME"));
+        assertTrue(output.contains("Location: Desert"));
+        assertTrue(output.contains("Position Type: Quality control"));
+        assertTrue(output.contains("Core Competency: Persistence"));
+
+    }
+
 }
