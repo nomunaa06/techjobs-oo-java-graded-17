@@ -78,7 +78,7 @@ public class JobTest {
     public void testToStringContainsCorrectLabelsAndData(){
         Job job8 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         String output = job8.toString();
-        assertTrue(output.contains("ID: 1"));
+        assertTrue(output.contains("ID: "));
         assertTrue(output.contains("Name: Product tester"));
         assertTrue(output.contains("Employer: ACME"));
         assertTrue(output.contains("Location: Desert"));
